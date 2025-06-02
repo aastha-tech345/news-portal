@@ -21,10 +21,10 @@ mongoose
   });
 
 const app = express();
-
+const BASE_URL = "https://news-portal-gzdp.onrender.com";
 app.use(
   cors({
-    origin: process.env.BASE_URL,
+    origin: BASE_URL,
     credentials: true,
   })
 );
