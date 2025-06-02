@@ -33,17 +33,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 
-// Global error handler
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || PORT;
-  const message = err.message || "Internal Server Error";
-  res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
