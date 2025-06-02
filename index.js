@@ -10,7 +10,7 @@ import postRoutes from "./routes/post.route.js";
 import commentRoutes from "./routes/comment.route.js";
 
 dotenv.config();
-
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -41,7 +41,7 @@ app.use("/api/comment", commentRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || PORT;
   const message = err.message || "Internal Server Error";
   res.status(statusCode).json({
     success: false,
@@ -50,6 +50,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000!");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
